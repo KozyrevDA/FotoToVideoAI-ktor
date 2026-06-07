@@ -1,0 +1,616 @@
+2026-06-03 16:23:57.641 [DefaultDispatcher-worker-4] WARN  Exposed - Transaction attempt #0 failed: java.sql.BatchUpdateException: Batch entry 0 INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (('test'), ('test@test.com'), ('test@test.com'), ('f2d1042161249fba8f62988f813ac16cafa26d45bdcc32c9cc3fae32f95a7320'), ('b98509cfebf947b0fabdfa72611ec3030c7d73dd3b5e4abace7f8f8601aced80'), ('EMAIL'), ('FALSE'::boolean), ('FOTO_TO_VIDEO_AI'), ('0'::int4), (''))
+RETURNING * was aborted: ERROR: relation "users" does not exist
+  Позиция: 13  Call getNextException to see other errors in the batch.. Statement(s): INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+org.jetbrains.exposed.exceptions.ExposedSQLException: java.sql.BatchUpdateException: Batch entry 0 INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (('test'), ('test@test.com'), ('test@test.com'), ('f2d1042161249fba8f62988f813ac16cafa26d45bdcc32c9cc3fae32f95a7320'), ('b98509cfebf947b0fabdfa72611ec3030c7d73dd3b5e4abace7f8f8601aced80'), ('EMAIL'), ('FALSE'::boolean), ('FOTO_TO_VIDEO_AI'), ('0'::int4), (''))
+RETURNING * was aborted: ERROR: relation "users" does not exist
+  Позиция: 13  Call getNextException to see other errors in the batch.
+	at org.jetbrains.exposed.sql.statements.Statement.executeIn$exposed_core(Statement.kt:99)
+	at org.jetbrains.exposed.sql.Transaction.exec(Transaction.kt:292)
+	at org.jetbrains.exposed.sql.Transaction.exec(Transaction.kt:269)
+	at org.jetbrains.exposed.sql.statements.Statement.execute(Statement.kt:59)
+	at org.jetbrains.exposed.sql.QueriesKt.executeBatch(Queries.kt:438)
+	at org.jetbrains.exposed.sql.QueriesKt.batchInsert(Queries.kt:348)
+	at org.jetbrains.exposed.sql.QueriesKt.batchInsert(Queries.kt:323)
+	at org.jetbrains.exposed.sql.QueriesKt.batchInsert$default(Queries.kt:318)
+	at org.jetbrains.exposed.dao.EntityCache.flushInserts$lambda$25(EntityCache.kt:242)
+	at org.jetbrains.exposed.dao.EntityLifecycleInterceptorKt.executeAsPartOfEntityLifecycle(EntityLifecycleInterceptor.kt:18)
+	at org.jetbrains.exposed.dao.EntityCache.flushInserts$exposed_dao(EntityCache.kt:241)
+	at org.jetbrains.exposed.dao.EntityCache.flush(EntityCache.kt:192)
+	at org.jetbrains.exposed.dao.EntityCache.flush(EntityCache.kt:152)
+	at org.jetbrains.exposed.dao.EntityCacheKt.flushCache(EntityCache.kt:331)
+	at org.jetbrains.exposed.dao.EntityLifecycleInterceptor.beforeCommit(EntityLifecycleInterceptor.kt:98)
+	at org.jetbrains.exposed.sql.Transaction.commit(Transaction.kt:168)
+	at org.jetbrains.exposed.sql.transactions.experimental.SuspendedKt$suspendedTransactionAsyncInternal$1.invokeSuspend(Suspended.kt:194)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:124)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:586)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:820)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:717)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:704)
+Caused by: java.sql.BatchUpdateException: Batch entry 0 INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (('test'), ('test@test.com'), ('test@test.com'), ('f2d1042161249fba8f62988f813ac16cafa26d45bdcc32c9cc3fae32f95a7320'), ('b98509cfebf947b0fabdfa72611ec3030c7d73dd3b5e4abace7f8f8601aced80'), ('EMAIL'), ('FALSE'::boolean), ('FOTO_TO_VIDEO_AI'), ('0'::int4), (''))
+RETURNING * was aborted: ERROR: relation "users" does not exist
+  Позиция: 13  Call getNextException to see other errors in the batch.
+	at org.postgresql.jdbc.BatchResultHandler.handleError(BatchResultHandler.java:165)
+	at org.postgresql.core.ResultHandlerDelegate.handleError(ResultHandlerDelegate.java:52)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2421)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:580)
+	at org.postgresql.jdbc.PgStatement.internalExecuteBatch(PgStatement.java:889)
+	at org.postgresql.jdbc.PgStatement.executeBatch(PgStatement.java:913)
+	at org.postgresql.jdbc.PgPreparedStatement.executeBatch(PgPreparedStatement.java:1739)
+	at org.jetbrains.exposed.sql.statements.jdbc.JdbcPreparedStatementImpl.executeBatch(JdbcPreparedStatementImpl.kt:97)
+	at org.jetbrains.exposed.sql.statements.InsertStatement.execInsertFunction(InsertStatement.kt:230)
+	at org.jetbrains.exposed.sql.statements.InsertStatement.executeInternal(InsertStatement.kt:242)
+	at org.jetbrains.exposed.sql.statements.InsertStatement.executeInternal(InsertStatement.kt:19)
+	at org.jetbrains.exposed.sql.statements.Statement.executeIn$exposed_core(Statement.kt:97)
+	... 24 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "users" does not exist
+  Позиция: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420)
+	... 33 common frames omitted
+2026-06-03 16:23:57.660 [DefaultDispatcher-worker-4] WARN  Exposed - Wait 0 milliseconds before retrying
+2026-06-03 16:23:57.677 [DefaultDispatcher-worker-4] WARN  Exposed - Transaction attempt #1 failed: java.sql.BatchUpdateException: Batch entry 0 INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (('test'), ('test@test.com'), ('test@test.com'), ('f2d1042161249fba8f62988f813ac16cafa26d45bdcc32c9cc3fae32f95a7320'), ('b98509cfebf947b0fabdfa72611ec3030c7d73dd3b5e4abace7f8f8601aced80'), ('EMAIL'), ('FALSE'::boolean), ('FOTO_TO_VIDEO_AI'), ('0'::int4), (''))
+RETURNING * was aborted: ERROR: relation "users" does not exist
+  Позиция: 13  Call getNextException to see other errors in the batch.. Statement(s): INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+org.jetbrains.exposed.exceptions.ExposedSQLException: java.sql.BatchUpdateException: Batch entry 0 INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (('test'), ('test@test.com'), ('test@test.com'), ('f2d1042161249fba8f62988f813ac16cafa26d45bdcc32c9cc3fae32f95a7320'), ('b98509cfebf947b0fabdfa72611ec3030c7d73dd3b5e4abace7f8f8601aced80'), ('EMAIL'), ('FALSE'::boolean), ('FOTO_TO_VIDEO_AI'), ('0'::int4), (''))
+RETURNING * was aborted: ERROR: relation "users" does not exist
+  Позиция: 13  Call getNextException to see other errors in the batch.
+	at org.jetbrains.exposed.sql.statements.Statement.executeIn$exposed_core(Statement.kt:99)
+	at org.jetbrains.exposed.sql.Transaction.exec(Transaction.kt:292)
+	at org.jetbrains.exposed.sql.Transaction.exec(Transaction.kt:269)
+	at org.jetbrains.exposed.sql.statements.Statement.execute(Statement.kt:59)
+	at org.jetbrains.exposed.sql.QueriesKt.executeBatch(Queries.kt:438)
+	at org.jetbrains.exposed.sql.QueriesKt.batchInsert(Queries.kt:348)
+	at org.jetbrains.exposed.sql.QueriesKt.batchInsert(Queries.kt:323)
+	at org.jetbrains.exposed.sql.QueriesKt.batchInsert$default(Queries.kt:318)
+	at org.jetbrains.exposed.dao.EntityCache.flushInserts$lambda$25(EntityCache.kt:242)
+	at org.jetbrains.exposed.dao.EntityLifecycleInterceptorKt.executeAsPartOfEntityLifecycle(EntityLifecycleInterceptor.kt:18)
+	at org.jetbrains.exposed.dao.EntityCache.flushInserts$exposed_dao(EntityCache.kt:241)
+	at org.jetbrains.exposed.dao.EntityCache.flush(EntityCache.kt:192)
+	at org.jetbrains.exposed.dao.EntityCache.flush(EntityCache.kt:152)
+	at org.jetbrains.exposed.dao.EntityCacheKt.flushCache(EntityCache.kt:331)
+	at org.jetbrains.exposed.dao.EntityLifecycleInterceptor.beforeCommit(EntityLifecycleInterceptor.kt:98)
+	at org.jetbrains.exposed.sql.Transaction.commit(Transaction.kt:168)
+	at org.jetbrains.exposed.sql.transactions.experimental.SuspendedKt$suspendedTransactionAsyncInternal$1.invokeSuspend(Suspended.kt:194)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:124)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:586)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:820)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:717)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:704)
+Caused by: java.sql.BatchUpdateException: Batch entry 0 INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (('test'), ('test@test.com'), ('test@test.com'), ('f2d1042161249fba8f62988f813ac16cafa26d45bdcc32c9cc3fae32f95a7320'), ('b98509cfebf947b0fabdfa72611ec3030c7d73dd3b5e4abace7f8f8601aced80'), ('EMAIL'), ('FALSE'::boolean), ('FOTO_TO_VIDEO_AI'), ('0'::int4), (''))
+RETURNING * was aborted: ERROR: relation "users" does not exist
+  Позиция: 13  Call getNextException to see other errors in the batch.
+	at org.postgresql.jdbc.BatchResultHandler.handleError(BatchResultHandler.java:165)
+	at org.postgresql.core.ResultHandlerDelegate.handleError(ResultHandlerDelegate.java:52)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2421)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:580)
+	at org.postgresql.jdbc.PgStatement.internalExecuteBatch(PgStatement.java:889)
+	at org.postgresql.jdbc.PgStatement.executeBatch(PgStatement.java:913)
+	at org.postgresql.jdbc.PgPreparedStatement.executeBatch(PgPreparedStatement.java:1739)
+	at org.jetbrains.exposed.sql.statements.jdbc.JdbcPreparedStatementImpl.executeBatch(JdbcPreparedStatementImpl.kt:97)
+	at org.jetbrains.exposed.sql.statements.InsertStatement.execInsertFunction(InsertStatement.kt:230)
+	at org.jetbrains.exposed.sql.statements.InsertStatement.executeInternal(InsertStatement.kt:242)
+	at org.jetbrains.exposed.sql.statements.InsertStatement.executeInternal(InsertStatement.kt:19)
+	at org.jetbrains.exposed.sql.statements.Statement.executeIn$exposed_core(Statement.kt:97)
+	... 24 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "users" does not exist
+  Позиция: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420)
+	... 33 common frames omitted
+2026-06-03 16:23:57.678 [DefaultDispatcher-worker-4] WARN  Exposed - Wait 0 milliseconds before retrying
+2026-06-03 16:23:57.689 [DefaultDispatcher-worker-4] WARN  Exposed - Transaction attempt #2 failed: java.sql.BatchUpdateException: Batch entry 0 INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (('test'), ('test@test.com'), ('test@test.com'), ('f2d1042161249fba8f62988f813ac16cafa26d45bdcc32c9cc3fae32f95a7320'), ('b98509cfebf947b0fabdfa72611ec3030c7d73dd3b5e4abace7f8f8601aced80'), ('EMAIL'), ('FALSE'::boolean), ('FOTO_TO_VIDEO_AI'), ('0'::int4), (''))
+RETURNING * was aborted: ERROR: relation "users" does not exist
+  Позиция: 13  Call getNextException to see other errors in the batch.. Statement(s): INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+org.jetbrains.exposed.exceptions.ExposedSQLException: java.sql.BatchUpdateException: Batch entry 0 INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (('test'), ('test@test.com'), ('test@test.com'), ('f2d1042161249fba8f62988f813ac16cafa26d45bdcc32c9cc3fae32f95a7320'), ('b98509cfebf947b0fabdfa72611ec3030c7d73dd3b5e4abace7f8f8601aced80'), ('EMAIL'), ('FALSE'::boolean), ('FOTO_TO_VIDEO_AI'), ('0'::int4), (''))
+RETURNING * was aborted: ERROR: relation "users" does not exist
+  Позиция: 13  Call getNextException to see other errors in the batch.
+	at org.jetbrains.exposed.sql.statements.Statement.executeIn$exposed_core(Statement.kt:99)
+	at org.jetbrains.exposed.sql.Transaction.exec(Transaction.kt:292)
+	at org.jetbrains.exposed.sql.Transaction.exec(Transaction.kt:269)
+	at org.jetbrains.exposed.sql.statements.Statement.execute(Statement.kt:59)
+	at org.jetbrains.exposed.sql.QueriesKt.executeBatch(Queries.kt:438)
+	at org.jetbrains.exposed.sql.QueriesKt.batchInsert(Queries.kt:348)
+	at org.jetbrains.exposed.sql.QueriesKt.batchInsert(Queries.kt:323)
+	at org.jetbrains.exposed.sql.QueriesKt.batchInsert$default(Queries.kt:318)
+	at org.jetbrains.exposed.dao.EntityCache.flushInserts$lambda$25(EntityCache.kt:242)
+	at org.jetbrains.exposed.dao.EntityLifecycleInterceptorKt.executeAsPartOfEntityLifecycle(EntityLifecycleInterceptor.kt:18)
+	at org.jetbrains.exposed.dao.EntityCache.flushInserts$exposed_dao(EntityCache.kt:241)
+	at org.jetbrains.exposed.dao.EntityCache.flush(EntityCache.kt:192)
+	at org.jetbrains.exposed.dao.EntityCache.flush(EntityCache.kt:152)
+	at org.jetbrains.exposed.dao.EntityCacheKt.flushCache(EntityCache.kt:331)
+	at org.jetbrains.exposed.dao.EntityLifecycleInterceptor.beforeCommit(EntityLifecycleInterceptor.kt:98)
+	at org.jetbrains.exposed.sql.Transaction.commit(Transaction.kt:168)
+	at org.jetbrains.exposed.sql.transactions.experimental.SuspendedKt$suspendedTransactionAsyncInternal$1.invokeSuspend(Suspended.kt:194)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:124)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:586)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:820)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:717)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:704)
+Caused by: java.sql.BatchUpdateException: Batch entry 0 INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (('test'), ('test@test.com'), ('test@test.com'), ('f2d1042161249fba8f62988f813ac16cafa26d45bdcc32c9cc3fae32f95a7320'), ('b98509cfebf947b0fabdfa72611ec3030c7d73dd3b5e4abace7f8f8601aced80'), ('EMAIL'), ('FALSE'::boolean), ('FOTO_TO_VIDEO_AI'), ('0'::int4), (''))
+RETURNING * was aborted: ERROR: relation "users" does not exist
+  Позиция: 13  Call getNextException to see other errors in the batch.
+	at org.postgresql.jdbc.BatchResultHandler.handleError(BatchResultHandler.java:165)
+	at org.postgresql.core.ResultHandlerDelegate.handleError(ResultHandlerDelegate.java:52)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2421)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:580)
+	at org.postgresql.jdbc.PgStatement.internalExecuteBatch(PgStatement.java:889)
+	at org.postgresql.jdbc.PgStatement.executeBatch(PgStatement.java:913)
+	at org.postgresql.jdbc.PgPreparedStatement.executeBatch(PgPreparedStatement.java:1739)
+	at org.jetbrains.exposed.sql.statements.jdbc.JdbcPreparedStatementImpl.executeBatch(JdbcPreparedStatementImpl.kt:97)
+	at org.jetbrains.exposed.sql.statements.InsertStatement.execInsertFunction(InsertStatement.kt:230)
+	at org.jetbrains.exposed.sql.statements.InsertStatement.executeInternal(InsertStatement.kt:242)
+	at org.jetbrains.exposed.sql.statements.InsertStatement.executeInternal(InsertStatement.kt:19)
+	at org.jetbrains.exposed.sql.statements.Statement.executeIn$exposed_core(Statement.kt:97)
+	... 24 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "users" does not exist
+  Позиция: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420)
+	... 33 common frames omitted
+2026-06-03 16:24:02.063 [DefaultDispatcher-worker-4] WARN  Exposed - Transaction attempt #0 failed: java.sql.BatchUpdateException: Batch entry 0 INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (('tester'), ('tester@local.dev'), ('tester@local.dev'), ('82b6cfecf948898b96e379e533cbbda37f1452a37b09bfa0a80188930fd17586'), ('20c577912e5bef032190e97106767a6992e8797f5139182ed5914974363f07af'), ('EMAIL'), ('FALSE'::boolean), ('FOTO_TO_VIDEO_AI'), ('0'::int4), (''))
+RETURNING * was aborted: ERROR: relation "users" does not exist
+  Позиция: 13  Call getNextException to see other errors in the batch.. Statement(s): INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+org.jetbrains.exposed.exceptions.ExposedSQLException: java.sql.BatchUpdateException: Batch entry 0 INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (('tester'), ('tester@local.dev'), ('tester@local.dev'), ('82b6cfecf948898b96e379e533cbbda37f1452a37b09bfa0a80188930fd17586'), ('20c577912e5bef032190e97106767a6992e8797f5139182ed5914974363f07af'), ('EMAIL'), ('FALSE'::boolean), ('FOTO_TO_VIDEO_AI'), ('0'::int4), (''))
+RETURNING * was aborted: ERROR: relation "users" does not exist
+  Позиция: 13  Call getNextException to see other errors in the batch.
+	at org.jetbrains.exposed.sql.statements.Statement.executeIn$exposed_core(Statement.kt:99)
+	at org.jetbrains.exposed.sql.Transaction.exec(Transaction.kt:292)
+	at org.jetbrains.exposed.sql.Transaction.exec(Transaction.kt:269)
+	at org.jetbrains.exposed.sql.statements.Statement.execute(Statement.kt:59)
+	at org.jetbrains.exposed.sql.QueriesKt.executeBatch(Queries.kt:438)
+	at org.jetbrains.exposed.sql.QueriesKt.batchInsert(Queries.kt:348)
+	at org.jetbrains.exposed.sql.QueriesKt.batchInsert(Queries.kt:323)
+	at org.jetbrains.exposed.sql.QueriesKt.batchInsert$default(Queries.kt:318)
+	at org.jetbrains.exposed.dao.EntityCache.flushInserts$lambda$25(EntityCache.kt:242)
+	at org.jetbrains.exposed.dao.EntityLifecycleInterceptorKt.executeAsPartOfEntityLifecycle(EntityLifecycleInterceptor.kt:18)
+	at org.jetbrains.exposed.dao.EntityCache.flushInserts$exposed_dao(EntityCache.kt:241)
+	at org.jetbrains.exposed.dao.EntityCache.flush(EntityCache.kt:192)
+	at org.jetbrains.exposed.dao.EntityCache.flush(EntityCache.kt:152)
+	at org.jetbrains.exposed.dao.EntityCacheKt.flushCache(EntityCache.kt:331)
+	at org.jetbrains.exposed.dao.EntityLifecycleInterceptor.beforeCommit(EntityLifecycleInterceptor.kt:98)
+	at org.jetbrains.exposed.sql.Transaction.commit(Transaction.kt:168)
+	at org.jetbrains.exposed.sql.transactions.experimental.SuspendedKt$suspendedTransactionAsyncInternal$1.invokeSuspend(Suspended.kt:194)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:124)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:586)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:820)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:717)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:704)
+Caused by: java.sql.BatchUpdateException: Batch entry 0 INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (('tester'), ('tester@local.dev'), ('tester@local.dev'), ('82b6cfecf948898b96e379e533cbbda37f1452a37b09bfa0a80188930fd17586'), ('20c577912e5bef032190e97106767a6992e8797f5139182ed5914974363f07af'), ('EMAIL'), ('FALSE'::boolean), ('FOTO_TO_VIDEO_AI'), ('0'::int4), (''))
+RETURNING * was aborted: ERROR: relation "users" does not exist
+  Позиция: 13  Call getNextException to see other errors in the batch.
+	at org.postgresql.jdbc.BatchResultHandler.handleError(BatchResultHandler.java:165)
+	at org.postgresql.core.ResultHandlerDelegate.handleError(ResultHandlerDelegate.java:52)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2421)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:580)
+	at org.postgresql.jdbc.PgStatement.internalExecuteBatch(PgStatement.java:889)
+	at org.postgresql.jdbc.PgStatement.executeBatch(PgStatement.java:913)
+	at org.postgresql.jdbc.PgPreparedStatement.executeBatch(PgPreparedStatement.java:1739)
+	at org.jetbrains.exposed.sql.statements.jdbc.JdbcPreparedStatementImpl.executeBatch(JdbcPreparedStatementImpl.kt:97)
+	at org.jetbrains.exposed.sql.statements.InsertStatement.execInsertFunction(InsertStatement.kt:230)
+	at org.jetbrains.exposed.sql.statements.InsertStatement.executeInternal(InsertStatement.kt:242)
+	at org.jetbrains.exposed.sql.statements.InsertStatement.executeInternal(InsertStatement.kt:19)
+	at org.jetbrains.exposed.sql.statements.Statement.executeIn$exposed_core(Statement.kt:97)
+	... 24 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "users" does not exist
+  Позиция: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420)
+	... 33 common frames omitted
+2026-06-03 16:24:02.063 [DefaultDispatcher-worker-4] WARN  Exposed - Wait 0 milliseconds before retrying
+2026-06-03 16:24:02.075 [DefaultDispatcher-worker-4] WARN  Exposed - Transaction attempt #1 failed: java.sql.BatchUpdateException: Batch entry 0 INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (('tester'), ('tester@local.dev'), ('tester@local.dev'), ('82b6cfecf948898b96e379e533cbbda37f1452a37b09bfa0a80188930fd17586'), ('20c577912e5bef032190e97106767a6992e8797f5139182ed5914974363f07af'), ('EMAIL'), ('FALSE'::boolean), ('FOTO_TO_VIDEO_AI'), ('0'::int4), (''))
+RETURNING * was aborted: ERROR: relation "users" does not exist
+  Позиция: 13  Call getNextException to see other errors in the batch.. Statement(s): INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+org.jetbrains.exposed.exceptions.ExposedSQLException: java.sql.BatchUpdateException: Batch entry 0 INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (('tester'), ('tester@local.dev'), ('tester@local.dev'), ('82b6cfecf948898b96e379e533cbbda37f1452a37b09bfa0a80188930fd17586'), ('20c577912e5bef032190e97106767a6992e8797f5139182ed5914974363f07af'), ('EMAIL'), ('FALSE'::boolean), ('FOTO_TO_VIDEO_AI'), ('0'::int4), (''))
+RETURNING * was aborted: ERROR: relation "users" does not exist
+  Позиция: 13  Call getNextException to see other errors in the batch.
+	at org.jetbrains.exposed.sql.statements.Statement.executeIn$exposed_core(Statement.kt:99)
+	at org.jetbrains.exposed.sql.Transaction.exec(Transaction.kt:292)
+	at org.jetbrains.exposed.sql.Transaction.exec(Transaction.kt:269)
+	at org.jetbrains.exposed.sql.statements.Statement.execute(Statement.kt:59)
+	at org.jetbrains.exposed.sql.QueriesKt.executeBatch(Queries.kt:438)
+	at org.jetbrains.exposed.sql.QueriesKt.batchInsert(Queries.kt:348)
+	at org.jetbrains.exposed.sql.QueriesKt.batchInsert(Queries.kt:323)
+	at org.jetbrains.exposed.sql.QueriesKt.batchInsert$default(Queries.kt:318)
+	at org.jetbrains.exposed.dao.EntityCache.flushInserts$lambda$25(EntityCache.kt:242)
+	at org.jetbrains.exposed.dao.EntityLifecycleInterceptorKt.executeAsPartOfEntityLifecycle(EntityLifecycleInterceptor.kt:18)
+	at org.jetbrains.exposed.dao.EntityCache.flushInserts$exposed_dao(EntityCache.kt:241)
+	at org.jetbrains.exposed.dao.EntityCache.flush(EntityCache.kt:192)
+	at org.jetbrains.exposed.dao.EntityCache.flush(EntityCache.kt:152)
+	at org.jetbrains.exposed.dao.EntityCacheKt.flushCache(EntityCache.kt:331)
+	at org.jetbrains.exposed.dao.EntityLifecycleInterceptor.beforeCommit(EntityLifecycleInterceptor.kt:98)
+	at org.jetbrains.exposed.sql.Transaction.commit(Transaction.kt:168)
+	at org.jetbrains.exposed.sql.transactions.experimental.SuspendedKt$suspendedTransactionAsyncInternal$1.invokeSuspend(Suspended.kt:194)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:124)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:586)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:820)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:717)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:704)
+Caused by: java.sql.BatchUpdateException: Batch entry 0 INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (('tester'), ('tester@local.dev'), ('tester@local.dev'), ('82b6cfecf948898b96e379e533cbbda37f1452a37b09bfa0a80188930fd17586'), ('20c577912e5bef032190e97106767a6992e8797f5139182ed5914974363f07af'), ('EMAIL'), ('FALSE'::boolean), ('FOTO_TO_VIDEO_AI'), ('0'::int4), (''))
+RETURNING * was aborted: ERROR: relation "users" does not exist
+  Позиция: 13  Call getNextException to see other errors in the batch.
+	at org.postgresql.jdbc.BatchResultHandler.handleError(BatchResultHandler.java:165)
+	at org.postgresql.core.ResultHandlerDelegate.handleError(ResultHandlerDelegate.java:52)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2421)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:580)
+	at org.postgresql.jdbc.PgStatement.internalExecuteBatch(PgStatement.java:889)
+	at org.postgresql.jdbc.PgStatement.executeBatch(PgStatement.java:913)
+	at org.postgresql.jdbc.PgPreparedStatement.executeBatch(PgPreparedStatement.java:1739)
+	at org.jetbrains.exposed.sql.statements.jdbc.JdbcPreparedStatementImpl.executeBatch(JdbcPreparedStatementImpl.kt:97)
+	at org.jetbrains.exposed.sql.statements.InsertStatement.execInsertFunction(InsertStatement.kt:230)
+	at org.jetbrains.exposed.sql.statements.InsertStatement.executeInternal(InsertStatement.kt:242)
+	at org.jetbrains.exposed.sql.statements.InsertStatement.executeInternal(InsertStatement.kt:19)
+	at org.jetbrains.exposed.sql.statements.Statement.executeIn$exposed_core(Statement.kt:97)
+	... 24 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "users" does not exist
+  Позиция: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420)
+	... 33 common frames omitted
+2026-06-03 16:24:02.076 [DefaultDispatcher-worker-4] WARN  Exposed - Wait 0 milliseconds before retrying
+2026-06-03 16:24:02.088 [DefaultDispatcher-worker-4] WARN  Exposed - Transaction attempt #2 failed: java.sql.BatchUpdateException: Batch entry 0 INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (('tester'), ('tester@local.dev'), ('tester@local.dev'), ('82b6cfecf948898b96e379e533cbbda37f1452a37b09bfa0a80188930fd17586'), ('20c577912e5bef032190e97106767a6992e8797f5139182ed5914974363f07af'), ('EMAIL'), ('FALSE'::boolean), ('FOTO_TO_VIDEO_AI'), ('0'::int4), (''))
+RETURNING * was aborted: ERROR: relation "users" does not exist
+  Позиция: 13  Call getNextException to see other errors in the batch.. Statement(s): INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+org.jetbrains.exposed.exceptions.ExposedSQLException: java.sql.BatchUpdateException: Batch entry 0 INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (('tester'), ('tester@local.dev'), ('tester@local.dev'), ('82b6cfecf948898b96e379e533cbbda37f1452a37b09bfa0a80188930fd17586'), ('20c577912e5bef032190e97106767a6992e8797f5139182ed5914974363f07af'), ('EMAIL'), ('FALSE'::boolean), ('FOTO_TO_VIDEO_AI'), ('0'::int4), (''))
+RETURNING * was aborted: ERROR: relation "users" does not exist
+  Позиция: 13  Call getNextException to see other errors in the batch.
+	at org.jetbrains.exposed.sql.statements.Statement.executeIn$exposed_core(Statement.kt:99)
+	at org.jetbrains.exposed.sql.Transaction.exec(Transaction.kt:292)
+	at org.jetbrains.exposed.sql.Transaction.exec(Transaction.kt:269)
+	at org.jetbrains.exposed.sql.statements.Statement.execute(Statement.kt:59)
+	at org.jetbrains.exposed.sql.QueriesKt.executeBatch(Queries.kt:438)
+	at org.jetbrains.exposed.sql.QueriesKt.batchInsert(Queries.kt:348)
+	at org.jetbrains.exposed.sql.QueriesKt.batchInsert(Queries.kt:323)
+	at org.jetbrains.exposed.sql.QueriesKt.batchInsert$default(Queries.kt:318)
+	at org.jetbrains.exposed.dao.EntityCache.flushInserts$lambda$25(EntityCache.kt:242)
+	at org.jetbrains.exposed.dao.EntityLifecycleInterceptorKt.executeAsPartOfEntityLifecycle(EntityLifecycleInterceptor.kt:18)
+	at org.jetbrains.exposed.dao.EntityCache.flushInserts$exposed_dao(EntityCache.kt:241)
+	at org.jetbrains.exposed.dao.EntityCache.flush(EntityCache.kt:192)
+	at org.jetbrains.exposed.dao.EntityCache.flush(EntityCache.kt:152)
+	at org.jetbrains.exposed.dao.EntityCacheKt.flushCache(EntityCache.kt:331)
+	at org.jetbrains.exposed.dao.EntityLifecycleInterceptor.beforeCommit(EntityLifecycleInterceptor.kt:98)
+	at org.jetbrains.exposed.sql.Transaction.commit(Transaction.kt:168)
+	at org.jetbrains.exposed.sql.transactions.experimental.SuspendedKt$suspendedTransactionAsyncInternal$1.invokeSuspend(Suspended.kt:194)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:124)
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:586)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:820)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:717)
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:704)
+Caused by: java.sql.BatchUpdateException: Batch entry 0 INSERT INTO users ("name", email, email_reg, pass, salt, auth_method, is_processing, type_app, coins, refresh_token) VALUES (('tester'), ('tester@local.dev'), ('tester@local.dev'), ('82b6cfecf948898b96e379e533cbbda37f1452a37b09bfa0a80188930fd17586'), ('20c577912e5bef032190e97106767a6992e8797f5139182ed5914974363f07af'), ('EMAIL'), ('FALSE'::boolean), ('FOTO_TO_VIDEO_AI'), ('0'::int4), (''))
+RETURNING * was aborted: ERROR: relation "users" does not exist
+  Позиция: 13  Call getNextException to see other errors in the batch.
+	at org.postgresql.jdbc.BatchResultHandler.handleError(BatchResultHandler.java:165)
+	at org.postgresql.core.ResultHandlerDelegate.handleError(ResultHandlerDelegate.java:52)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2421)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:580)
+	at org.postgresql.jdbc.PgStatement.internalExecuteBatch(PgStatement.java:889)
+	at org.postgresql.jdbc.PgStatement.executeBatch(PgStatement.java:913)
+	at org.postgresql.jdbc.PgPreparedStatement.executeBatch(PgPreparedStatement.java:1739)
+	at org.jetbrains.exposed.sql.statements.jdbc.JdbcPreparedStatementImpl.executeBatch(JdbcPreparedStatementImpl.kt:97)
+	at org.jetbrains.exposed.sql.statements.InsertStatement.execInsertFunction(InsertStatement.kt:230)
+	at org.jetbrains.exposed.sql.statements.InsertStatement.executeInternal(InsertStatement.kt:242)
+	at org.jetbrains.exposed.sql.statements.InsertStatement.executeInternal(InsertStatement.kt:19)
+	at org.jetbrains.exposed.sql.statements.Statement.executeIn$exposed_core(Statement.kt:97)
+	... 24 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "users" does not exist
+  Позиция: 13
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420)
+	... 33 common frames omitted
+2026-06-03 16:24:43.581 [main] INFO  Application - Autoreload is disabled because the development mode is off.
+2026-06-03 16:24:43.832 [main] INFO  Exposed - Preparing create tables statements took 30ms
+2026-06-03 16:24:43.909 [main] INFO  Exposed - Executing create tables statements took 77ms
+2026-06-03 16:24:43.922 [main] INFO  Exposed - Extracting table columns took 13ms
+2026-06-03 16:24:43.928 [main] INFO  Exposed - Extracting primary keys took 6ms
+2026-06-03 16:24:44.068 [main] INFO  Exposed - Extracting column constraints took 139ms
+2026-06-03 16:24:44.068 [main] INFO  Exposed - Preparing alter table statements took 159ms
+2026-06-03 16:24:44.068 [main] INFO  Exposed - Executing alter table statements took 0ms
+2026-06-03 16:24:44.084 [main] INFO  Exposed - Checking mapping consistence took 16ms
+2026-06-03 16:24:44.183 [main] INFO  Application - Application started in 0.683 seconds.
+2026-06-03 16:24:44.248 [DefaultDispatcher-worker-2] INFO  Application - Responding at http://localhost:8088
+2026-06-03 16:27:43.477 [eventLoopGroupProxy-4-2] INFO  i.k.server.application.Application - get("/test")
+2026-06-03 16:43:43.757 [eventLoopGroupProxy-4-6] INFO  i.k.server.application.Application - post("/generate/videos"), user: test@test.com, userPrompt: , systemPromt: SystemPromt(nameFilter=videoAvatar, secondTemplatePath=null)
+2026-06-03 16:43:43.785 [eventLoopGroupProxy-4-6] INFO  i.k.server.application.Application - generateVideoViaKie(), veo3, user: test@test.com, retry: 0, start
+2026-06-03 16:43:44.819 [eventLoopGroupProxy-4-6] INFO  i.k.server.application.Application - generateVideo(), veo3 failed, falling back to seedance, user: test@test.com
+2026-06-03 16:43:44.821 [eventLoopGroupProxy-4-6] INFO  i.k.server.application.Application - generateVideo(), seedance, model: seedance-video-api-1-图像转视频生成, user: test@test.com, retry: 0, start
+2026-06-03 16:43:46.201 [eventLoopGroupProxy-4-6] INFO  i.k.server.application.Application - generateVideo(), seedance, model: seedance-video-api-1-图像转视频生成, user: test@test.com, Error bodyAsText: {"error":{"message":"Current group default has no available channels for model seedance-video-api-1-图像转视频生成 under billing mode [pay-as-you-go, pay-per-request] (request id: 2026060319434597285815158480325)","type":"shell_api_error"}}
+2026-06-03 16:43:46.224 [eventLoopGroupProxy-4-6] INFO  i.k.server.application.Application - generateVideo(), seedance, user: test@test.com, retry: 0, Error kotlinx.serialization.MissingFieldException: Field 'id' is required for type with serial name 'data.remote.ai.dto.VideoTaskDto', but it was missing at path: $
+	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(StreamingJsonDecoder.kt:95)
+	at kotlinx.serialization.json.Json.decodeFromString(Json.kt:149)
+	at data.remote.ai.Seedance.generateVideo(Seedance.kt:339)
+	at data.remote.ai.Seedance$generateVideo$1.invokeSuspend(Seedance.kt)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at io.netty.util.concurrent.AbstractEventExecutor.runTask(AbstractEventExecutor.java:173)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:166)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:472)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:569)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: kotlinx.serialization.MissingFieldException: Field 'id' is required for type with serial name 'data.remote.ai.dto.VideoTaskDto', but it was missing
+	at kotlinx.serialization.internal.PluginExceptionsKt.throwMissingFieldException(PluginExceptions.kt:20)
+	at data.remote.ai.dto.VideoTaskDto.<init>(ChatGPTAiResponseDto.kt:6)
+	at data.remote.ai.dto.VideoTaskDto$$serializer.deserialize(ChatGPTAiResponseDto.kt:6)
+	at data.remote.ai.dto.VideoTaskDto$$serializer.deserialize(ChatGPTAiResponseDto.kt:6)
+	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(StreamingJsonDecoder.kt:69)
+	... 13 more
+
+2026-06-03 16:43:46.245 [eventLoopGroupProxy-4-6] INFO  i.k.server.application.Application - post("/generate/videos"), user: test@test.com, ResultApiAI.Error Field 'id' is required for type with serial name 'data.remote.ai.dto.VideoTaskDto', but it was missing at path: $
+2026-06-03 16:43:59.730 [eventLoopGroupProxy-4-6] INFO  i.k.server.application.Application - post("/generate/videos"), user: test@test.com, userPrompt: null, systemPromt: SystemPromt(nameFilter=animatePhoto, secondTemplatePath=null)
+2026-06-03 16:43:59.751 [eventLoopGroupProxy-4-6] INFO  i.k.server.application.Application - generateVideoViaKie(), veo3, user: test@test.com, retry: 0, start
+2026-06-03 16:44:00.392 [eventLoopGroupProxy-4-6] INFO  i.k.server.application.Application - generateVideo(), veo3 failed, falling back to seedance, user: test@test.com
+2026-06-03 16:44:00.392 [eventLoopGroupProxy-4-6] INFO  i.k.server.application.Application - generateVideo(), seedance, model: seedance-video-api-1-图像转视频生成, user: test@test.com, retry: 0, start
+2026-06-03 16:44:01.465 [eventLoopGroupProxy-4-6] INFO  i.k.server.application.Application - generateVideo(), seedance, model: seedance-video-api-1-图像转视频生成, user: test@test.com, Error bodyAsText: {"error":{"message":"Current group default has no available channels for model seedance-video-api-1-图像转视频生成 under billing mode [pay-as-you-go, pay-per-request] (request id: 2026060319440134114029311219837)","type":"shell_api_error"}}
+2026-06-03 16:44:01.490 [eventLoopGroupProxy-4-6] INFO  i.k.server.application.Application - generateVideo(), seedance, user: test@test.com, retry: 0, Error kotlinx.serialization.MissingFieldException: Field 'id' is required for type with serial name 'data.remote.ai.dto.VideoTaskDto', but it was missing at path: $
+	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(StreamingJsonDecoder.kt:95)
+	at kotlinx.serialization.json.Json.decodeFromString(Json.kt:149)
+	at data.remote.ai.Seedance.generateVideo(Seedance.kt:339)
+	at data.remote.ai.Seedance$generateVideo$1.invokeSuspend(Seedance.kt)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at io.netty.util.concurrent.AbstractEventExecutor.runTask(AbstractEventExecutor.java:173)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:166)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:472)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:569)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: kotlinx.serialization.MissingFieldException: Field 'id' is required for type with serial name 'data.remote.ai.dto.VideoTaskDto', but it was missing
+	at kotlinx.serialization.internal.PluginExceptionsKt.throwMissingFieldException(PluginExceptions.kt:20)
+	at data.remote.ai.dto.VideoTaskDto.<init>(ChatGPTAiResponseDto.kt:6)
+	at data.remote.ai.dto.VideoTaskDto$$serializer.deserialize(ChatGPTAiResponseDto.kt:6)
+	at data.remote.ai.dto.VideoTaskDto$$serializer.deserialize(ChatGPTAiResponseDto.kt:6)
+	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(StreamingJsonDecoder.kt:69)
+	... 13 more
+
+2026-06-03 16:44:01.510 [eventLoopGroupProxy-4-6] INFO  i.k.server.application.Application - post("/generate/videos"), user: test@test.com, ResultApiAI.Error Field 'id' is required for type with serial name 'data.remote.ai.dto.VideoTaskDto', but it was missing at path: $
+2026-06-03 16:44:09.915 [eventLoopGroupProxy-4-6] INFO  i.k.server.application.Application - post("/generate/videos"), user: test@test.com, userPrompt: null, systemPromt: SystemPromt(nameFilter=animatePhoto, secondTemplatePath=null)
+2026-06-03 16:44:09.926 [eventLoopGroupProxy-4-6] INFO  i.k.server.application.Application - generateVideoViaKie(), veo3, user: test@test.com, retry: 0, start
+2026-06-03 16:44:10.554 [eventLoopGroupProxy-4-6] INFO  i.k.server.application.Application - generateVideo(), veo3 failed, falling back to seedance, user: test@test.com
+2026-06-03 16:44:10.555 [eventLoopGroupProxy-4-6] INFO  i.k.server.application.Application - generateVideo(), seedance, model: seedance-video-api-1-图像转视频生成, user: test@test.com, retry: 0, start
+2026-06-03 16:44:11.783 [eventLoopGroupProxy-4-6] INFO  i.k.server.application.Application - generateVideo(), seedance, model: seedance-video-api-1-图像转视频生成, user: test@test.com, Error bodyAsText: {"error":{"message":"Current group default has no available channels for model seedance-video-api-1-图像转视频生成 under billing mode [pay-as-you-go, pay-per-request] (request id: 2026060319441165224356181697617)","type":"shell_api_error"}}
+2026-06-03 16:44:11.814 [eventLoopGroupProxy-4-6] INFO  i.k.server.application.Application - generateVideo(), seedance, user: test@test.com, retry: 0, Error kotlinx.serialization.MissingFieldException: Field 'id' is required for type with serial name 'data.remote.ai.dto.VideoTaskDto', but it was missing at path: $
+	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(StreamingJsonDecoder.kt:95)
+	at kotlinx.serialization.json.Json.decodeFromString(Json.kt:149)
+	at data.remote.ai.Seedance.generateVideo(Seedance.kt:339)
+	at data.remote.ai.Seedance$generateVideo$1.invokeSuspend(Seedance.kt)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at io.netty.util.concurrent.AbstractEventExecutor.runTask(AbstractEventExecutor.java:173)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:166)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:472)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:569)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: kotlinx.serialization.MissingFieldException: Field 'id' is required for type with serial name 'data.remote.ai.dto.VideoTaskDto', but it was missing
+	at kotlinx.serialization.internal.PluginExceptionsKt.throwMissingFieldException(PluginExceptions.kt:20)
+	at data.remote.ai.dto.VideoTaskDto.<init>(ChatGPTAiResponseDto.kt:6)
+	at data.remote.ai.dto.VideoTaskDto$$serializer.deserialize(ChatGPTAiResponseDto.kt:6)
+	at data.remote.ai.dto.VideoTaskDto$$serializer.deserialize(ChatGPTAiResponseDto.kt:6)
+	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(StreamingJsonDecoder.kt:69)
+	... 13 more
+
+2026-06-03 16:44:11.837 [eventLoopGroupProxy-4-6] INFO  i.k.server.application.Application - post("/generate/videos"), user: test@test.com, ResultApiAI.Error Field 'id' is required for type with serial name 'data.remote.ai.dto.VideoTaskDto', but it was missing at path: $
+2026-06-03 16:45:20.959 [eventLoopGroupProxy-4-3] INFO  i.k.server.application.Application - post("/generate/videos"), user: test@test.com, userPrompt: null, systemPromt: SystemPromt(nameFilter=beforeAfter, secondTemplatePath=null)
+2026-06-03 16:45:20.976 [eventLoopGroupProxy-4-3] INFO  i.k.server.application.Application - generateVideoViaKie(), veo3, user: test@test.com, retry: 0, start
+2026-06-03 16:45:21.632 [eventLoopGroupProxy-4-3] INFO  i.k.server.application.Application - generateVideo(), veo3 failed, falling back to seedance, user: test@test.com
+2026-06-03 16:45:21.632 [eventLoopGroupProxy-4-3] INFO  i.k.server.application.Application - generateVideo(), seedance, model: seedance-video-api-1-图像转视频生成, user: test@test.com, retry: 0, start
+2026-06-03 16:45:23.893 [eventLoopGroupProxy-4-3] INFO  i.k.server.application.Application - generateVideo(), seedance, model: seedance-video-api-1-图像转视频生成, user: test@test.com, Error bodyAsText: {"error":{"message":"Current group default has no available channels for model seedance-video-api-1-图像转视频生成 under billing mode [pay-as-you-go, pay-per-request] (request id: 2026060319452358066068522502767)","type":"shell_api_error"}}
+2026-06-03 16:45:23.914 [eventLoopGroupProxy-4-3] INFO  i.k.server.application.Application - generateVideo(), seedance, user: test@test.com, retry: 0, Error kotlinx.serialization.MissingFieldException: Field 'id' is required for type with serial name 'data.remote.ai.dto.VideoTaskDto', but it was missing at path: $
+	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(StreamingJsonDecoder.kt:95)
+	at kotlinx.serialization.json.Json.decodeFromString(Json.kt:149)
+	at data.remote.ai.Seedance.generateVideo(Seedance.kt:339)
+	at data.remote.ai.Seedance$generateVideo$1.invokeSuspend(Seedance.kt)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at io.netty.util.concurrent.AbstractEventExecutor.runTask(AbstractEventExecutor.java:173)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:166)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:472)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:569)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: kotlinx.serialization.MissingFieldException: Field 'id' is required for type with serial name 'data.remote.ai.dto.VideoTaskDto', but it was missing
+	at kotlinx.serialization.internal.PluginExceptionsKt.throwMissingFieldException(PluginExceptions.kt:20)
+	at data.remote.ai.dto.VideoTaskDto.<init>(ChatGPTAiResponseDto.kt:6)
+	at data.remote.ai.dto.VideoTaskDto$$serializer.deserialize(ChatGPTAiResponseDto.kt:6)
+	at data.remote.ai.dto.VideoTaskDto$$serializer.deserialize(ChatGPTAiResponseDto.kt:6)
+	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(StreamingJsonDecoder.kt:69)
+	... 13 more
+
+2026-06-03 16:45:23.935 [eventLoopGroupProxy-4-3] INFO  i.k.server.application.Application - post("/generate/videos"), user: test@test.com, ResultApiAI.Error Field 'id' is required for type with serial name 'data.remote.ai.dto.VideoTaskDto', but it was missing at path: $
+2026-06-03 17:01:46.735 [main] INFO  Application - Autoreload is disabled because the development mode is off.
+2026-06-03 17:01:46.973 [main] INFO  Exposed - Preparing create tables statements took 27ms
+2026-06-03 17:01:46.980 [main] INFO  Exposed - Executing create tables statements took 7ms
+2026-06-03 17:01:47.009 [main] INFO  Exposed - Extracting table columns took 27ms
+2026-06-03 17:01:47.017 [main] INFO  Exposed - Extracting primary keys took 8ms
+2026-06-03 17:01:47.168 [main] INFO  Exposed - Extracting column constraints took 147ms
+2026-06-03 17:01:47.169 [main] INFO  Exposed - Preparing alter table statements took 189ms
+2026-06-03 17:01:47.169 [main] INFO  Exposed - Executing alter table statements took 0ms
+2026-06-03 17:01:47.182 [main] INFO  Exposed - Checking mapping consistence took 13ms
+2026-06-03 17:01:47.264 [main] INFO  Application - Application started in 0.609 seconds.
+2026-06-03 17:01:47.320 [DefaultDispatcher-worker-5] INFO  Application - Responding at http://localhost:8088
+2026-06-03 17:05:53.278 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - post("/generate/videos"), user: test@test.com, userPrompt: , systemPromt: SystemPromt(nameFilter=videoAvatar, secondTemplatePath=null)
+2026-06-03 17:05:53.304 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), veo3, model: veo-3.1-fast-generate-preview, user: test@test.com, retry: 0, start
+2026-06-03 17:05:55.398 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), veo3, model: veo-3.1-fast-generate-preview, user: test@test.com, Error bodyAsText: {"message":"{\"code\":\"fail_to_fetch_task\",\"message\":\"当前分组上游负载已饱和，请稍后再试\",\"data\":null}","type":"task_error","code":"fail_to_fetch_task"}
+2026-06-03 17:05:55.415 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, retry: 0, Error kotlinx.serialization.MissingFieldException: Field 'id' is required for type with serial name 'data.remote.ai.dto.VideoTaskDto', but it was missing at path: $
+	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(StreamingJsonDecoder.kt:95)
+	at kotlinx.serialization.json.Json.decodeFromString(Json.kt:149)
+	at data.remote.ai.Veo3.generateVideoVeo(Veo3.kt:597)
+	at data.remote.ai.Veo3.access$generateVideoVeo(Veo3.kt:34)
+	at data.remote.ai.Veo3$generateVideoVeo$1.invokeSuspend(Veo3.kt)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at io.netty.util.concurrent.AbstractEventExecutor.runTask(AbstractEventExecutor.java:173)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:166)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:472)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:569)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: kotlinx.serialization.MissingFieldException: Field 'id' is required for type with serial name 'data.remote.ai.dto.VideoTaskDto', but it was missing
+	at kotlinx.serialization.internal.PluginExceptionsKt.throwMissingFieldException(PluginExceptions.kt:20)
+	at data.remote.ai.dto.VideoTaskDto.<init>(ChatGPTAiResponseDto.kt:6)
+	at data.remote.ai.dto.VideoTaskDto$$serializer.deserialize(ChatGPTAiResponseDto.kt:6)
+	at data.remote.ai.dto.VideoTaskDto$$serializer.deserialize(ChatGPTAiResponseDto.kt:6)
+	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(StreamingJsonDecoder.kt:69)
+	... 14 more
+
+2026-06-03 17:05:55.430 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), veo3 failed, falling back to seedance, user: test@test.com
+2026-06-03 17:05:55.430 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), seedance, model: doubao-seedance-1.0-pro-fast, user: test@test.com, retry: 0, start
+2026-06-03 17:05:56.559 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), seedance, model: doubao-seedance-1.0-pro-fast, user: test@test.com, Error bodyAsText: {"error":{"message":"Current group default has no available channels for model doubao-seedance-1.0-pro-fast under billing mode [pay-as-you-go, pay-per-request] (request id: 2026060320055639876405871070085)","type":"shell_api_error"}}
+2026-06-03 17:05:56.595 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), seedance, user: test@test.com, retry: 0, Error kotlinx.serialization.MissingFieldException: Field 'id' is required for type with serial name 'data.remote.ai.dto.VideoTaskDto', but it was missing at path: $
+	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(StreamingJsonDecoder.kt:95)
+	at kotlinx.serialization.json.Json.decodeFromString(Json.kt:149)
+	at data.remote.ai.Seedance.generateVideo(Seedance.kt:339)
+	at data.remote.ai.Seedance$generateVideo$1.invokeSuspend(Seedance.kt)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at io.netty.util.concurrent.AbstractEventExecutor.runTask(AbstractEventExecutor.java:173)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:166)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:472)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:569)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: kotlinx.serialization.MissingFieldException: Field 'id' is required for type with serial name 'data.remote.ai.dto.VideoTaskDto', but it was missing
+	at kotlinx.serialization.internal.PluginExceptionsKt.throwMissingFieldException(PluginExceptions.kt:20)
+	at data.remote.ai.dto.VideoTaskDto.<init>(ChatGPTAiResponseDto.kt:6)
+	at data.remote.ai.dto.VideoTaskDto$$serializer.deserialize(ChatGPTAiResponseDto.kt:6)
+	at data.remote.ai.dto.VideoTaskDto$$serializer.deserialize(ChatGPTAiResponseDto.kt:6)
+	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(StreamingJsonDecoder.kt:69)
+	... 13 more
+
+2026-06-03 17:05:56.639 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - post("/generate/videos"), user: test@test.com, ResultApiAI.Error Field 'id' is required for type with serial name 'data.remote.ai.dto.VideoTaskDto', but it was missing at path: $
+2026-06-03 17:07:58.230 [main] INFO  Application - Autoreload is disabled because the development mode is off.
+2026-06-03 17:07:58.459 [main] INFO  Exposed - Preparing create tables statements took 20ms
+2026-06-03 17:07:58.465 [main] INFO  Exposed - Executing create tables statements took 5ms
+2026-06-03 17:07:58.487 [main] INFO  Exposed - Extracting table columns took 22ms
+2026-06-03 17:07:58.498 [main] INFO  Exposed - Extracting primary keys took 11ms
+2026-06-03 17:07:58.649 [main] INFO  Exposed - Extracting column constraints took 148ms
+2026-06-03 17:07:58.650 [main] INFO  Exposed - Preparing alter table statements took 185ms
+2026-06-03 17:07:58.650 [main] INFO  Exposed - Executing alter table statements took 0ms
+2026-06-03 17:07:58.663 [main] INFO  Exposed - Checking mapping consistence took 13ms
+2026-06-03 17:07:58.750 [main] INFO  Application - Application started in 0.598 seconds.
+2026-06-03 17:07:58.804 [DefaultDispatcher-worker-5] INFO  Application - Responding at http://localhost:8088
+2026-06-03 17:09:42.642 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - post("/generate/videos"), user: test@test.com, userPrompt: , systemPromt: SystemPromt(nameFilter=videoAvatar, secondTemplatePath=null)
+2026-06-03 17:09:42.665 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), veo3, model: veo-3.1-fast-generate-preview, user: test@test.com, retry: 0, start
+2026-06-03 17:09:44.581 [eventLoopGroupProxy-4-1] WARN  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, attempt 1, server overloaded, retrying in 10s...
+2026-06-03 17:09:56.438 [eventLoopGroupProxy-4-1] WARN  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, attempt 2, server overloaded, retrying in 10s...
+2026-06-03 17:10:09.815 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), veo3, model: veo-3.1-fast-generate-preview, user: test@test.com, retry: 0, video not ready yet, status=queued, progress=0%, waiting...
+2026-06-03 17:11:10.159 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), veo3, model: veo-3.1-fast-generate-preview, retry: 0, user: test@test.com, video id: task_ysXvVPLlB8iFiWC666ayLHWeYLFDrAh4, video generation completed
+2026-06-03 17:11:10.186 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - post("/generate/videos"), user: test@test.com, ResultApiAI.Success
+2026-06-03 17:11:11.847 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - post("/generate/get"), user: test@test.com, ResultApiAI.Success
+2026-06-03 17:11:11.944 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - post("/generate/get"), user: test@test.com, ResultApiAI.Success
+2026-06-03 17:11:11.999 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - post("/generate/get"), user: test@test.com, ResultApiAI.Success
+2026-06-03 17:13:16.505 [eventLoopGroupProxy-4-10] INFO  i.k.server.application.Application - post("/generate/videos"), user: test@test.com, userPrompt: null, systemPromt: SystemPromt(nameFilter=videoAvatar, secondTemplatePath=null)
+2026-06-03 17:13:16.522 [eventLoopGroupProxy-4-10] INFO  i.k.server.application.Application - generateVideo(), veo3, model: veo-3.1-fast-generate-preview, user: test@test.com, retry: 0, start
+2026-06-03 17:13:20.007 [eventLoopGroupProxy-4-10] WARN  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, attempt 1, server overloaded, retrying in 10s...
+2026-06-03 17:13:35.423 [eventLoopGroupProxy-4-10] WARN  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, attempt 2, server overloaded, retrying in 10s...
+2026-06-03 17:13:48.753 [eventLoopGroupProxy-4-10] WARN  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, attempt 3, server overloaded, retrying in 10s...
+2026-06-03 17:14:02.881 [eventLoopGroupProxy-4-10] WARN  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, attempt 4, server overloaded, retrying in 10s...
+2026-06-03 17:14:16.344 [eventLoopGroupProxy-4-10] WARN  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, attempt 5, server overloaded, retrying in 10s...
+2026-06-03 17:14:29.518 [eventLoopGroupProxy-4-10] WARN  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, attempt 6, server overloaded, retrying in 10s...
+2026-06-03 17:14:43.092 [eventLoopGroupProxy-4-10] WARN  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, attempt 7, server overloaded, retrying in 10s...
+2026-06-03 17:14:56.556 [eventLoopGroupProxy-4-10] WARN  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, attempt 8, server overloaded, retrying in 10s...
+2026-06-03 17:15:11.790 [eventLoopGroupProxy-4-10] INFO  i.k.server.application.Application - generateVideo(), veo3, model: veo-3.1-fast-generate-preview, user: test@test.com, retry: 0, video not ready yet, status=queued, progress=0%, waiting...
+2026-06-03 17:16:38.482 [eventLoopGroupProxy-4-10] INFO  i.k.server.application.Application - generateVideo(), veo3, model: veo-3.1-fast-generate-preview, retry: 0, user: test@test.com, video id: task_Y183Jp6jossl2GQxqcj3CeCzlcQwN40T, video generation completed
+2026-06-03 17:16:38.511 [eventLoopGroupProxy-4-10] INFO  i.k.server.application.Application - post("/generate/videos"), user: test@test.com, ResultApiAI.Success
+2026-06-03 17:16:39.236 [eventLoopGroupProxy-4-10] INFO  i.k.server.application.Application - post("/generate/get"), user: test@test.com, ResultApiAI.Success
+2026-06-03 17:16:39.296 [eventLoopGroupProxy-4-10] INFO  i.k.server.application.Application - post("/generate/get"), user: test@test.com, ResultApiAI.Success
+2026-06-03 17:16:39.363 [eventLoopGroupProxy-4-10] INFO  i.k.server.application.Application - post("/generate/get"), user: test@test.com, ResultApiAI.Success
+2026-06-03 23:41:00.148 [eventLoopGroupProxy-4-2] INFO  i.k.server.application.Application - start refresh: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ0b2tlbnMiLCJpc3MiOiJodHRwczovL2ZvdG90b3ZpZGVvYWkuc3RvcmUiLCJleHAiOjE4MTIwMjQ1ODEsImVtYWlsX3JlZ2lzdHJhdGlvbiI6InRlc3RAdGVzdC5jb20ifQ.anR_clP5JbY5xyDtDFd8MreZRcfSZq0gaDjQepcI3uo
+2026-06-03 23:41:00.149 [eventLoopGroupProxy-4-2] INFO  i.k.server.application.Application - refresh valid
+2026-06-03 23:41:00.181 [eventLoopGroupProxy-4-2] INFO  i.k.server.application.Application - refresh test@test.com, user: test@test.com
+2026-06-03 23:41:00.182 [eventLoopGroupProxy-4-2] INFO  i.k.server.application.Application - refresh test@test.com, refreshToken
+2026-06-03 23:41:00.195 [eventLoopGroupProxy-4-2] INFO  i.k.server.application.Application - refresh test@test.com, HttpStatusCode.OK
+2026-06-03 23:41:01.806 [eventLoopGroupProxy-4-2] INFO  i.k.server.application.Application - post("/generate/videos"), user: test@test.com, userPrompt: null, systemPromt: SystemPromt(nameFilter=videoAvatar, secondTemplatePath=null)
+2026-06-03 23:41:01.821 [eventLoopGroupProxy-4-2] INFO  i.k.server.application.Application - generateVideo(), veo3, model: veo-3.1-fast-generate-preview, user: test@test.com, retry: 0, start
+2026-06-03 23:45:12.957 [eventLoopGroupProxy-4-2] WARN  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, attempt 1, server overloaded, retrying in 10s...
+2026-06-03 23:45:30.049 [eventLoopGroupProxy-4-2] WARN  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, attempt 2, server overloaded, retrying in 10s...
+2026-06-03 23:45:43.509 [eventLoopGroupProxy-4-2] WARN  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, attempt 3, server overloaded, retrying in 10s...
+2026-06-03 23:46:00.483 [eventLoopGroupProxy-4-2] WARN  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, attempt 4, server overloaded, retrying in 10s...
+2026-06-03 23:46:17.451 [eventLoopGroupProxy-4-2] WARN  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, attempt 5, server overloaded, retrying in 10s...
+2026-06-03 23:46:30.354 [eventLoopGroupProxy-4-2] WARN  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, attempt 6, server overloaded, retrying in 10s...
+2026-06-03 23:46:43.458 [eventLoopGroupProxy-4-2] WARN  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, attempt 7, server overloaded, retrying in 10s...
+2026-06-03 23:47:00.083 [eventLoopGroupProxy-4-2] WARN  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, attempt 8, server overloaded, retrying in 10s...
+2026-06-03 23:47:17.479 [eventLoopGroupProxy-4-2] WARN  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, attempt 9, server overloaded, retrying in 10s...
+2026-06-03 23:47:36.242 [eventLoopGroupProxy-4-2] WARN  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, attempt 10, server overloaded, retrying in 10s...
+2026-06-03 23:47:49.214 [eventLoopGroupProxy-4-2] WARN  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, attempt 11, server overloaded, retrying in 10s...
+2026-06-03 23:48:02.260 [eventLoopGroupProxy-4-2] INFO  i.k.server.application.Application - generateVideo(), veo3, model: veo-3.1-fast-generate-preview, user: test@test.com, Error bodyAsText: {"message":"{\"code\":\"fail_to_fetch_task\",\"message\":\"当前分组上游负载已饱和，请稍后再试\",\"data\":null}","type":"task_error","code":"fail_to_fetch_task"}
+2026-06-03 23:48:02.285 [eventLoopGroupProxy-4-2] INFO  i.k.server.application.Application - generateVideo(), veo3, user: test@test.com, retry: 0, Error kotlinx.serialization.MissingFieldException: Field 'id' is required for type with serial name 'data.remote.ai.dto.VideoTaskDto', but it was missing at path: $
+	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(StreamingJsonDecoder.kt:95)
+	at kotlinx.serialization.json.Json.decodeFromString(Json.kt:149)
+	at data.remote.ai.Veo3.generateVideoVeo(Veo3.kt:607)
+	at data.remote.ai.Veo3.access$generateVideoVeo(Veo3.kt:34)
+	at data.remote.ai.Veo3$generateVideoVeo$1.invokeSuspend(Veo3.kt)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at io.netty.util.concurrent.AbstractEventExecutor.runTask(AbstractEventExecutor.java:173)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:166)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:472)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:569)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: kotlinx.serialization.MissingFieldException: Field 'id' is required for type with serial name 'data.remote.ai.dto.VideoTaskDto', but it was missing
+	at kotlinx.serialization.internal.PluginExceptionsKt.throwMissingFieldException(PluginExceptions.kt:20)
+	at data.remote.ai.dto.VideoTaskDto.<init>(ChatGPTAiResponseDto.kt:6)
+	at data.remote.ai.dto.VideoTaskDto$$serializer.deserialize(ChatGPTAiResponseDto.kt:6)
+	at data.remote.ai.dto.VideoTaskDto$$serializer.deserialize(ChatGPTAiResponseDto.kt:6)
+	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(StreamingJsonDecoder.kt:69)
+	... 14 more
+
+2026-06-03 23:48:02.297 [eventLoopGroupProxy-4-2] INFO  i.k.server.application.Application - generateVideo(), veo3 failed, falling back to seedance, user: test@test.com
+2026-06-03 23:48:02.299 [eventLoopGroupProxy-4-2] INFO  i.k.server.application.Application - generateVideo(), seedance, model: doubao-seedance-1.0-pro-fast, user: test@test.com, retry: 0, start
+2026-06-03 23:48:04.453 [eventLoopGroupProxy-4-2] INFO  i.k.server.application.Application - generateVideo(), seedance, model: doubao-seedance-1.0-pro-fast, user: test@test.com, Error bodyAsText: {"error":{"message":"Current group default has no available channels for model doubao-seedance-1.0-pro-fast under billing mode [pay-as-you-go, pay-per-request] (request id: 2026060402480420904917430788090)","type":"shell_api_error"}}
+2026-06-03 23:48:04.479 [eventLoopGroupProxy-4-2] INFO  i.k.server.application.Application - generateVideo(), seedance, user: test@test.com, retry: 0, Error kotlinx.serialization.MissingFieldException: Field 'id' is required for type with serial name 'data.remote.ai.dto.VideoTaskDto', but it was missing at path: $
+	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(StreamingJsonDecoder.kt:95)
+	at kotlinx.serialization.json.Json.decodeFromString(Json.kt:149)
+	at data.remote.ai.Seedance.generateVideo(Seedance.kt:339)
+	at data.remote.ai.Seedance$generateVideo$1.invokeSuspend(Seedance.kt)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at io.netty.util.concurrent.AbstractEventExecutor.runTask(AbstractEventExecutor.java:173)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:166)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:472)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:569)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: kotlinx.serialization.MissingFieldException: Field 'id' is required for type with serial name 'data.remote.ai.dto.VideoTaskDto', but it was missing
+	at kotlinx.serialization.internal.PluginExceptionsKt.throwMissingFieldException(PluginExceptions.kt:20)
+	at data.remote.ai.dto.VideoTaskDto.<init>(ChatGPTAiResponseDto.kt:6)
+	at data.remote.ai.dto.VideoTaskDto$$serializer.deserialize(ChatGPTAiResponseDto.kt:6)
+	at data.remote.ai.dto.VideoTaskDto$$serializer.deserialize(ChatGPTAiResponseDto.kt:6)
+	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(StreamingJsonDecoder.kt:69)
+	... 13 more
+
+2026-06-03 23:48:04.499 [eventLoopGroupProxy-4-2] INFO  i.k.server.application.Application - post("/generate/videos"), user: test@test.com, ResultApiAI.Error Field 'id' is required for type with serial name 'data.remote.ai.dto.VideoTaskDto', but it was missing at path: $

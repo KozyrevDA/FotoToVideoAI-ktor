@@ -1,0 +1,99 @@
+2026-06-05 18:37:18.452 [main] INFO  Application - Autoreload is disabled because the development mode is off.
+2026-06-05 18:37:18.702 [main] INFO  Exposed - Preparing create tables statements took 24ms
+2026-06-05 18:37:18.738 [main] INFO  Exposed - Executing create tables statements took 36ms
+2026-06-05 18:37:18.747 [main] INFO  Exposed - Extracting table columns took 9ms
+2026-06-05 18:37:18.754 [main] INFO  Exposed - Extracting primary keys took 7ms
+2026-06-05 18:37:18.900 [main] INFO  Exposed - Extracting column constraints took 145ms
+2026-06-05 18:37:18.900 [main] INFO  Exposed - Preparing alter table statements took 162ms
+2026-06-05 18:37:18.901 [main] INFO  Exposed - Executing alter table statements took 1ms
+2026-06-05 18:37:18.911 [main] INFO  Exposed - Checking mapping consistence took 10ms
+2026-06-05 18:37:19.010 [main] INFO  Application - Application started in 0.644 seconds.
+2026-06-05 18:37:19.071 [DefaultDispatcher-worker-6] INFO  Application - Responding at http://localhost:8088
+2026-06-05 18:43:42.712 [main] INFO  Application - Autoreload is disabled because the development mode is off.
+2026-06-05 18:43:42.945 [main] INFO  Exposed - Preparing create tables statements took 21ms
+2026-06-05 18:43:42.951 [main] INFO  Exposed - Executing create tables statements took 6ms
+2026-06-05 18:43:42.974 [main] INFO  Exposed - Extracting table columns took 23ms
+2026-06-05 18:43:42.986 [main] INFO  Exposed - Extracting primary keys took 11ms
+2026-06-05 18:43:43.151 [main] INFO  Exposed - Extracting column constraints took 162ms
+2026-06-05 18:43:43.151 [main] INFO  Exposed - Preparing alter table statements took 200ms
+2026-06-05 18:43:43.151 [main] INFO  Exposed - Executing alter table statements took 0ms
+2026-06-05 18:43:43.163 [main] INFO  Exposed - Checking mapping consistence took 12ms
+2026-06-05 18:43:43.250 [main] INFO  Application - Application started in 0.617 seconds.
+2026-06-05 18:43:43.310 [DefaultDispatcher-worker-6] INFO  Application - Responding at http://localhost:8088
+2026-06-05 18:43:58.490 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), kling-hedra, model: fal/kling-v3-standard-i2v, user: trial_test_kling_check_001, retry: 0, start
+2026-06-05 18:43:59.872 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - uploadImage(), kling-hedra, created asset: ab66900f-f459-4d44-b170-a3b984dc6707
+2026-06-05 18:44:01.381 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - uploadImage(), kling-hedra, uploaded asset: ab66900f-f459-4d44-b170-a3b984dc6707
+2026-06-05 18:44:02.487 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), kling-hedra, generation response: {"code":422,"messages":["Unable to extract tag using discriminator 'type' (type=union_tag_not_found at body)"]}
+2026-06-05 18:44:02.493 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), kling-hedra, user: trial_test_kling_check_001, Error parsing response: {"code":422,"messages":["Unable to extract tag using discriminator 'type' (type=union_tag_not_found at body)"]}
+2026-06-05 18:44:02.524 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), kling-hedra, user: trial_test_kling_check_001, retry: 0, Error kotlinx.serialization.MissingFieldException: Field 'id' is required for type with serial name 'data.remote.ai.HedraGenerationResponse', but it was missing at path: $
+	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(StreamingJsonDecoder.kt:95)
+	at kotlinx.serialization.json.Json.decodeFromString(Json.kt:149)
+	at data.remote.ai.KlingHedra.generateVideo(KlingHedra.kt:469)
+	at data.remote.ai.KlingHedra$generateVideo$1.invokeSuspend(KlingHedra.kt)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at io.netty.util.concurrent.AbstractEventExecutor.runTask(AbstractEventExecutor.java:173)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:166)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:472)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:569)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:998)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: kotlinx.serialization.MissingFieldException: Field 'id' is required for type with serial name 'data.remote.ai.HedraGenerationResponse', but it was missing
+	at kotlinx.serialization.internal.PluginExceptionsKt.throwMissingFieldException(PluginExceptions.kt:20)
+	at data.remote.ai.HedraGenerationResponse.<init>(KlingHedra.kt:63)
+	at data.remote.ai.HedraGenerationResponse$$serializer.deserialize(KlingHedra.kt:63)
+	at data.remote.ai.HedraGenerationResponse$$serializer.deserialize(KlingHedra.kt:63)
+	at kotlinx.serialization.json.internal.StreamingJsonDecoder.decodeSerializableValue(StreamingJsonDecoder.kt:69)
+	... 13 more
+
+2026-06-05 18:44:02.550 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - post("/generate/trial"), deviceUid: test_kling_check_001, ResultApiAI.Error: Field 'id' is required for type with serial name 'data.remote.ai.HedraGenerationResponse', but it was missing at path: $
+2026-06-05 18:44:46.638 [main] INFO  Application - Autoreload is disabled because the development mode is off.
+2026-06-05 18:44:46.864 [main] INFO  Exposed - Preparing create tables statements took 23ms
+2026-06-05 18:44:46.870 [main] INFO  Exposed - Executing create tables statements took 6ms
+2026-06-05 18:44:46.891 [main] INFO  Exposed - Extracting table columns took 21ms
+2026-06-05 18:44:46.903 [main] INFO  Exposed - Extracting primary keys took 12ms
+2026-06-05 18:44:47.064 [main] INFO  Exposed - Extracting column constraints took 158ms
+2026-06-05 18:44:47.064 [main] INFO  Exposed - Preparing alter table statements took 194ms
+2026-06-05 18:44:47.065 [main] INFO  Exposed - Executing alter table statements took 1ms
+2026-06-05 18:44:47.076 [main] INFO  Exposed - Checking mapping consistence took 11ms
+2026-06-05 18:44:47.164 [main] INFO  Application - Application started in 0.603 seconds.
+2026-06-05 18:44:47.217 [DefaultDispatcher-worker-2] INFO  Application - Responding at http://localhost:8088
+2026-06-05 18:45:02.435 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), kling-hedra, model: fal/kling-v3-standard-i2v, user: trial_test_kling_check_002, retry: 0, start
+2026-06-05 18:45:03.813 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - uploadImage(), kling-hedra, created asset: 745fb2fa-3707-4f56-a07a-8826a72d1a6a
+2026-06-05 18:45:05.233 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - uploadImage(), kling-hedra, uploaded asset: 745fb2fa-3707-4f56-a07a-8826a72d1a6a
+2026-06-05 18:45:07.632 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), kling-hedra, generation response: {"workspace_id":null,"agent_thread_id":null,"generation_id":null,"generation_ids":null,"type":"video","ai_model_id":"2eb5fa4c-306e-45f8-99e4-2927ec0429a0","model_slug":null,"start_keyframe_id":"745fb2fa-3707-4f56-a07a-8826a72d1a6a","start_keyframe_url":null,"end_keyframe_id":null,"end_keyframe_url":null,"audio_id":null,"audio_generation":null,"audio_start_ms":null,"reference_audio_ids":null,"reference_image_ids":null,"reference_video_ids":null,"video_id":null,"generated_video_inputs":{"text_prompt":"\n      Оживи загруженную фотографию\n   язык для видео: ru","ai_model_id":null,"model_slug":null,"resolution":"720p","aspect_ratio":"9:16","duration_ms":5000,"bounding_box_target":null,"character_orientation":null,"enhance_prompt":false,"multi_prompt":null,"shot_type":null},"batch_size":1,"id":"b65b5eda-8499-46c9-8eaf-b31a79e8744c","asset_id":"b4319a56-351d-49ec-b799-6fe29abb4a50","created_at":"2026-06-05T13:45:06.417425Z","status":"queued","progress":0.0,"eta_sec":92,"batch_generation_id":null,"batch_results":[{"id":"b65b5eda-8499-46c9-8eaf-b31a79e8744c","asset_id":"b4319a56-351d-49ec-b799-6fe29abb4a50","created_at":"2026-06-05T13:45:06.417425Z","status":"queued","progress":0.0,"error":null,"eta_sec":null}]}
+2026-06-05 18:45:07.638 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), kling-hedra, user: trial_test_kling_check_002, generation started: b65b5eda-8499-46c9-8eaf-b31a79e8744c
+2026-06-05 18:45:08.744 [eventLoopGroupProxy-4-1] WARN  i.k.server.application.Application - generateVideo(), kling-hedra, status parse error, raw: {"id":"b65b5eda-8499-46c9-8eaf-b31a79e8744c","asset_id":"b4319a56-351d-49ec-b799-6fe29abb4a50","type":"video","status":"queued","progress":0.0,"created_at":"2026-06-05T13:45:06.417425Z","error":null,"error_message":null,"url":null,"download_url":null,"streaming_url":null,"workspace_id":"181945"}
+2026-06-05 18:45:14.844 [eventLoopGroupProxy-4-1] WARN  i.k.server.application.Application - generateVideo(), kling-hedra, status parse error, raw: {"id":"b65b5eda-8499-46c9-8eaf-b31a79e8744c","asset_id":"b4319a56-351d-49ec-b799-6fe29abb4a50","type":"video","status":"queued","progress":0.0,"created_at":"2026-06-05T13:45:06.417425Z","error":null,"error_message":null,"url":null,"download_url":null,"streaming_url":null,"workspace_id":"181945"}
+2026-06-05 18:45:20.939 [eventLoopGroupProxy-4-1] WARN  i.k.server.application.Application - generateVideo(), kling-hedra, status parse error, raw: {"id":"b65b5eda-8499-46c9-8eaf-b31a79e8744c","asset_id":"b4319a56-351d-49ec-b799-6fe29abb4a50","type":"video","status":"processing","progress":0.1,"created_at":"2026-06-05T13:45:06.417425Z","error":null,"error_message":null,"url":null,"download_url":null,"streaming_url":null,"workspace_id":"181945"}
+2026-06-05 18:45:27.077 [eventLoopGroupProxy-4-1] WARN  i.k.server.application.Application - generateVideo(), kling-hedra, status parse error, raw: {"id":"b65b5eda-8499-46c9-8eaf-b31a79e8744c","asset_id":"b4319a56-351d-49ec-b799-6fe29abb4a50","type":"video","status":"processing","progress":0.1,"created_at":"2026-06-05T13:45:06.417425Z","error":null,"error_message":null,"url":null,"download_url":null,"streaming_url":null,"workspace_id":"181945"}
+2026-06-05 18:45:33.195 [eventLoopGroupProxy-4-1] WARN  i.k.server.application.Application - generateVideo(), kling-hedra, status parse error, raw: {"id":"b65b5eda-8499-46c9-8eaf-b31a79e8744c","asset_id":"b4319a56-351d-49ec-b799-6fe29abb4a50","type":"video","status":"processing","progress":0.1,"created_at":"2026-06-05T13:45:06.417425Z","error":null,"error_message":null,"url":null,"download_url":null,"streaming_url":null,"workspace_id":"181945"}
+2026-06-05 18:45:39.297 [eventLoopGroupProxy-4-1] WARN  i.k.server.application.Application - generateVideo(), kling-hedra, status parse error, raw: {"id":"b65b5eda-8499-46c9-8eaf-b31a79e8744c","asset_id":"b4319a56-351d-49ec-b799-6fe29abb4a50","type":"video","status":"processing","progress":0.1,"created_at":"2026-06-05T13:45:06.417425Z","error":null,"error_message":null,"url":null,"download_url":null,"streaming_url":null,"workspace_id":"181945"}
+2026-06-05 18:45:45.750 [eventLoopGroupProxy-4-1] WARN  i.k.server.application.Application - generateVideo(), kling-hedra, status parse error, raw: {"id":"b65b5eda-8499-46c9-8eaf-b31a79e8744c","asset_id":"b4319a56-351d-49ec-b799-6fe29abb4a50","type":"video","status":"processing","progress":0.1,"created_at":"2026-06-05T13:45:06.417425Z","error":null,"error_message":null,"url":null,"download_url":null,"streaming_url":null,"workspace_id":"181945"}
+2026-06-05 18:45:51.855 [eventLoopGroupProxy-4-1] WARN  i.k.server.application.Application - generateVideo(), kling-hedra, status parse error, raw: {"id":"b65b5eda-8499-46c9-8eaf-b31a79e8744c","asset_id":"b4319a56-351d-49ec-b799-6fe29abb4a50","type":"video","status":"processing","progress":0.1,"created_at":"2026-06-05T13:45:06.417425Z","error":null,"error_message":null,"url":null,"download_url":null,"streaming_url":null,"workspace_id":"181945"}
+2026-06-05 18:45:58.007 [eventLoopGroupProxy-4-1] WARN  i.k.server.application.Application - generateVideo(), kling-hedra, status parse error, raw: {"id":"b65b5eda-8499-46c9-8eaf-b31a79e8744c","asset_id":"b4319a56-351d-49ec-b799-6fe29abb4a50","type":"video","status":"processing","progress":0.1,"created_at":"2026-06-05T13:45:06.417425Z","error":null,"error_message":null,"url":null,"download_url":null,"streaming_url":null,"workspace_id":"181945"}
+2026-06-05 18:46:04.100 [eventLoopGroupProxy-4-1] WARN  i.k.server.application.Application - generateVideo(), kling-hedra, status parse error, raw: {"id":"b65b5eda-8499-46c9-8eaf-b31a79e8744c","asset_id":"b4319a56-351d-49ec-b799-6fe29abb4a50","type":"video","status":"processing","progress":0.1,"created_at":"2026-06-05T13:45:06.417425Z","error":null,"error_message":null,"url":null,"download_url":null,"streaming_url":null,"workspace_id":"181945"}
+2026-06-05 18:46:11.304 [eventLoopGroupProxy-4-1] WARN  i.k.server.application.Application - generateVideo(), kling-hedra, status parse error, raw: {"id":"b65b5eda-8499-46c9-8eaf-b31a79e8744c","asset_id":"b4319a56-351d-49ec-b799-6fe29abb4a50","type":"video","status":"processing","progress":0.1,"created_at":"2026-06-05T13:45:06.417425Z","error":null,"error_message":null,"url":null,"download_url":null,"streaming_url":null,"workspace_id":"181945"}
+2026-06-05 18:46:17.408 [eventLoopGroupProxy-4-1] WARN  i.k.server.application.Application - generateVideo(), kling-hedra, status parse error, raw: {"id":"b65b5eda-8499-46c9-8eaf-b31a79e8744c","asset_id":"b4319a56-351d-49ec-b799-6fe29abb4a50","type":"video","status":"processing","progress":0.1,"created_at":"2026-06-05T13:45:06.417425Z","error":null,"error_message":null,"url":null,"download_url":null,"streaming_url":null,"workspace_id":"181945"}
+2026-06-05 18:46:24.248 [main] INFO  Application - Autoreload is disabled because the development mode is off.
+2026-06-05 18:46:24.473 [main] INFO  Exposed - Preparing create tables statements took 18ms
+2026-06-05 18:46:24.480 [main] INFO  Exposed - Executing create tables statements took 7ms
+2026-06-05 18:46:24.494 [main] INFO  Exposed - Extracting table columns took 14ms
+2026-06-05 18:46:24.500 [main] INFO  Exposed - Extracting primary keys took 6ms
+2026-06-05 18:46:24.638 [main] INFO  Exposed - Extracting column constraints took 133ms
+2026-06-05 18:46:24.639 [main] INFO  Exposed - Preparing alter table statements took 159ms
+2026-06-05 18:46:24.639 [main] INFO  Exposed - Executing alter table statements took 0ms
+2026-06-05 18:46:24.654 [main] INFO  Exposed - Checking mapping consistence took 15ms
+2026-06-05 18:46:24.743 [main] INFO  Application - Application started in 0.579 seconds.
+2026-06-05 18:46:24.805 [DefaultDispatcher-worker-6] INFO  Application - Responding at http://localhost:8088
+2026-06-05 18:46:42.680 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), kling-hedra, model: fal/kling-v3-standard-i2v, user: trial_test_kling_check_003, retry: 0, start
+2026-06-05 18:46:44.008 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - uploadImage(), kling-hedra, created asset: bf2eb3f6-fe4e-4114-b66b-bd62e702d1c2
+2026-06-05 18:46:45.503 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - uploadImage(), kling-hedra, uploaded asset: bf2eb3f6-fe4e-4114-b66b-bd62e702d1c2
+2026-06-05 18:46:47.281 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), kling-hedra, generation response: {"workspace_id":null,"agent_thread_id":null,"generation_id":null,"generation_ids":null,"type":"video","ai_model_id":"2eb5fa4c-306e-45f8-99e4-2927ec0429a0","model_slug":null,"start_keyframe_id":"bf2eb3f6-fe4e-4114-b66b-bd62e702d1c2","start_keyframe_url":null,"end_keyframe_id":null,"end_keyframe_url":null,"audio_id":null,"audio_generation":null,"audio_start_ms":null,"reference_audio_ids":null,"reference_image_ids":null,"reference_video_ids":null,"video_id":null,"generated_video_inputs":{"text_prompt":"\n      Оживи загруженную фотографию\n   язык для видео: ru","ai_model_id":null,"model_slug":null,"resolution":"720p","aspect_ratio":"9:16","duration_ms":5000,"bounding_box_target":null,"character_orientation":null,"enhance_prompt":false,"multi_prompt":null,"shot_type":null},"batch_size":1,"id":"915e9f18-d797-44a4-94be-df9a54207ad9","asset_id":"61a761b6-6692-46a1-bb51-422733aba86f","created_at":"2026-06-05T13:46:47.141446Z","status":"queued","progress":0.0,"eta_sec":92,"batch_generation_id":null,"batch_results":[{"id":"915e9f18-d797-44a4-94be-df9a54207ad9","asset_id":"61a761b6-6692-46a1-bb51-422733aba86f","created_at":"2026-06-05T13:46:47.141446Z","status":"queued","progress":0.0,"error":null,"eta_sec":null}]}
+2026-06-05 18:46:47.288 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), kling-hedra, user: trial_test_kling_check_003, generation started: 915e9f18-d797-44a4-94be-df9a54207ad9
+2026-06-05 18:46:48.986 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), kling-hedra, user: trial_test_kling_check_003, status=queued, progress=0.0%, waiting...
+2026-06-05 18:46:55.176 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), kling-hedra, user: trial_test_kling_check_003, status=processing, progress=0.1%, waiting...
+2026-06-05 18:52:06.029 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - generateVideo(), kling-hedra, user: trial_test_kling_check_003, video 915e9f18-d797-44a4-94be-df9a54207ad9 completed
+2026-06-05 18:52:06.033 [eventLoopGroupProxy-4-1] INFO  i.k.server.application.Application - post("/generate/trial"), deviceUid: test_kling_check_003, ResultApiAI.Success

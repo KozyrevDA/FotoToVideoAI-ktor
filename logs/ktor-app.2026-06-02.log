@@ -1,0 +1,24 @@
+2026-06-02 20:40:34.001 [main] INFO  Application - Autoreload is disabled because the development mode is off.
+2026-06-02 20:41:40.886 [main] INFO  Application - Autoreload is disabled because the development mode is off.
+2026-06-02 20:41:41.121 [main] INFO  Exposed - Preparing create tables statements took 26ms
+2026-06-02 20:41:41.144 [main] INFO  Exposed - Executing create tables statements took 23ms
+2026-06-02 20:41:41.154 [main] INFO  Exposed - Extracting table columns took 10ms
+2026-06-02 20:41:41.158 [main] INFO  Exposed - Extracting primary keys took 4ms
+2026-06-02 20:41:41.204 [main] INFO  Exposed - Extracting column constraints took 45ms
+2026-06-02 20:41:41.205 [main] INFO  Exposed - Preparing alter table statements took 61ms
+2026-06-02 20:41:41.205 [main] INFO  Exposed - Executing alter table statements took 0ms
+2026-06-02 20:41:41.210 [main] INFO  Exposed - Checking mapping consistence took 5ms
+2026-06-02 20:41:41.293 [main] INFO  Application - Application started in 0.486 seconds.
+2026-06-02 20:41:41.351 [DefaultDispatcher-worker-4] INFO  Application - Responding at http://localhost:8088
+2026-06-02 22:31:58.308 [eventLoopGroupProxy-4-2] INFO  i.k.server.application.Application - get("/test")
+2026-06-02 22:48:23.469 [main] INFO  Application - Autoreload is disabled because the development mode is off.
+2026-06-02 22:48:23.730 [main] INFO  Exposed - Preparing create tables statements took 30ms
+2026-06-02 22:48:23.735 [main] INFO  Exposed - Executing create tables statements took 5ms
+2026-06-02 22:48:23.745 [main] INFO  Exposed - Extracting table columns took 10ms
+2026-06-02 22:48:23.749 [main] INFO  Exposed - Extracting primary keys took 4ms
+2026-06-02 22:48:23.805 [main] INFO  Exposed - Extracting column constraints took 55ms
+2026-06-02 22:48:23.805 [main] INFO  Exposed - Preparing alter table statements took 70ms
+2026-06-02 22:48:23.806 [main] INFO  Exposed - Executing alter table statements took 1ms
+2026-06-02 22:48:23.811 [main] INFO  Exposed - Checking mapping consistence took 5ms
+2026-06-02 22:48:23.910 [main] INFO  Application - Application started in 0.521 seconds.
+2026-06-02 22:48:23.975 [DefaultDispatcher-worker-4] INFO  Application - Responding at http://localhost:8088
