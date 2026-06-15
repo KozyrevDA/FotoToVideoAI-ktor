@@ -46,6 +46,24 @@ fun Routing.videos(
         logger = logger
     )
 
+    get("/videos/trial/{id_video}") {
+        try {
+            val idVideo = call.parameters["id_video"] ?: run {
+                call.respond(HttpStatusCode.BadRequest, "Empty idVideo field")
+                return@get
+            }
+            val videoFile = serverRepository.videosFiles.findVideoById(idVideo = idVideo) ?: run {
+                call.respond(HttpStatusCode.NotFound, "Video not found")
+                return@get
+            }
+            call.respondFile(videoFile)
+        } catch (_: ClosedWriteChannelException) {
+        } catch (_: ClosedByteChannelException) {
+        } catch (e: Exception) {
+            call.respond(HttpStatusCode.InternalServerError, "Internal server error")
+        }
+    }
+
     authenticate {
         post("/generate/video") {
             try {
@@ -652,7 +670,7 @@ private fun Routing.trialGeneration(
                 )
             ) {
                 is ResultApiAI.Success -> {
-                    call.respond(HttpStatusCode.OK, queueGen.uid)
+                    call.respondText(queueGen.uid, status = HttpStatusCode.OK)
                     logger.info("post(\"/generate/trial\"), deviceUid: $deviceUid, ResultApiAI.Success")
                 }
 

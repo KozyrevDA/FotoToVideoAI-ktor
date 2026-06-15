@@ -173,7 +173,7 @@ class Veo3(
 
             serverRepository.queueGen.upsert(queueGen.copy(status = QueueGenStatus.GENERATION))
 
-            val maxAttempts = 12
+            val maxAttempts = 2
             var attempt = 0
             var responseText: String
 
@@ -293,7 +293,7 @@ class Veo3(
                         val errorMsg = videoTaskResultDto.error?.message ?: "Unknown error"
                         logger.error("generateVideo(), veo3, model: $model, retry: $retry, user: ${user.getId()}, video id: ${videoTaskResultDto.id}, video generation failed: $errorMsg")
 
-                        if (retry < 6 && (errorMsg.contains("\"code\":403") || errorMsg.contains("PUBLIC_ERROR_HIGH_TRAFFIC"))) {
+                        if (retry < 1 && (errorMsg.contains("\"code\":403") || errorMsg.contains("PUBLIC_ERROR_HIGH_TRAFFIC"))) {
                             return generateVideoVeo(
                                 chatMessage = chatMessage,
                                 photo1 = photo1,

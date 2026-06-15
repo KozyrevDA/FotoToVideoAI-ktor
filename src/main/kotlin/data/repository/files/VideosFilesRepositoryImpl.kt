@@ -48,6 +48,14 @@ class VideosFilesRepositoryImpl : VideosFilesRepository {
         return@withContext null
     }
 
+    override suspend fun findVideoById(idVideo: String): File? = withContext(Dispatchers.IO) {
+        val rootDir = File(PATH_VIDEOS)
+        if (!rootDir.exists()) return@withContext null
+        rootDir.walkTopDown().find { file ->
+            file.isFile && file.nameWithoutExtension == idVideo
+        }
+    }
+
     override suspend fun deleteUser(user: User): Unit = withContext(Dispatchers.IO) {
         val uid = user.getId()
         val userPath = File("$PATH_VIDEOS$uid")

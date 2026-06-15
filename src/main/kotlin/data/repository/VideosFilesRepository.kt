@@ -11,5 +11,6 @@ interface VideosFilesRepository {
     ): File
 
     suspend fun getVideo(idVideo: String, user: User): File?
+    suspend fun findVideoById(idVideo: String): File?
     suspend fun deleteUser(user: User)
 }
