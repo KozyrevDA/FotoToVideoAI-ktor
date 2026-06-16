@@ -12,6 +12,7 @@ data class VeoGenerateRequest(
     val aspectRatio: String,
     val enableFallback: Boolean,
     val enableTranslation: Boolean,
+    val duration: Int = 8,
 )
 
 @Serializable
