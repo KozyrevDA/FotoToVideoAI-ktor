@@ -118,14 +118,15 @@ fun Application.module() {
         serverRepository = serverRepository,
         apiKey = getProperty("hedra.api_key"),
         settings = settings,
-        logger = logger
+        logger = logger,
+        modelSlug = "fal/kling-v3-standard-i2v"
     )
-    val veo3 = Veo3(
+    val veo3 = KlingHedra(
         serverRepository = serverRepository,
-        apiKey = getProperty("laozhang.api_key"),
-        apiKeyKie = getProperty("kie.api_key"),
+        apiKey = getProperty("hedra.api_key"),
         settings = settings,
         logger = logger,
+        modelSlug = "fal/veo-3-fast-i2v",
         fallbackApi = klingHedraApi
     )
     val confirmationGoogle = ConfirmationGoogle(logger = logger)

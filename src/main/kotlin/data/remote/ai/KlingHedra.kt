@@ -5,6 +5,7 @@ import data.remote.ApiAi
 import data.remote.Prompts
 import data.remote.ResultApiAI
 import data.remote.handleApiAiError
+import data.remote.isSafetyError
 import data.repository.ServerRepository
 import extensions.initHttpClientCIO
 import io.ktor.client.call.*
@@ -23,6 +24,7 @@ import java.io.File
 
 private const val HEDRA_BASE_URL = "https://api.hedra.com/web-app/public"
 private const val KLING_MODEL_SLUG = "fal/kling-v3-standard-i2v"
+private const val VEO_FAST_MODEL_SLUG = "fal/veo-3-fast-i2v"
 private const val WAIT_10_MINUTES = 10 * 60_000L
 
 private val hedraJson = Json {
@@ -94,6 +96,8 @@ class KlingHedra(
     private val settings: Settings,
     private val apiKey: String,
     private val logger: Logger,
+    private val modelSlug: String = KLING_MODEL_SLUG,
+    private val fallbackApi: ApiAi? = null,
 ) : ApiAi {
     private val client = initHttpClientCIO()
 
@@ -136,7 +140,7 @@ class KlingHedra(
                 OrientationType.LANDSCAPE -> "16:9"
             }
 
-            logger.info("generateVideo(), kling-hedra, model: $KLING_MODEL_SLUG, user: ${user.getId()}, retry: $retry, start")
+            logger.info("generateVideo(), hedra, model: $modelSlug, user: ${user.getId()}, retry: $retry, start")
 
             serverRepository.images.saveDoubleOriginImages(photo1 = photo1, photo2 = photo2, user = user)
             serverRepository.queueGen.upsert(queueGen.copy(status = QueueGenStatus.GENERATION))
@@ -145,21 +149,17 @@ class KlingHedra(
                 uploadImage(photo1, "user-photo1.png")
             } else null
 
-            val endKeyframeId = if (photo2 != null) {
-                uploadImage(photo2, "user-photo2.png")
-            } else null
-
             val prompt = Prompts.get(chatMessage, settings)
 
             val generationRequest = HedraGenerationRequest(
-                modelSlug = KLING_MODEL_SLUG,
+                modelSlug = modelSlug,
                 startKeyframeId = startKeyframeId,
-                endKeyframeId = endKeyframeId,
+                endKeyframeId = null,
                 generatedVideoInputs = HedraVideoInputs(
                     textPrompt = prompt,
                     aspectRatio = aspectRatio,
                     resolution = "720p",
-                    durationMs = 5000
+                    durationMs = 8000
                 )
             )
 
@@ -276,7 +276,7 @@ class KlingHedra(
                         val errorMsg = statusResponse.errorMessage
                             ?: statusResponse.error?.message
                             ?: "Unknown error"
-                        logger.error("generateVideo(), kling-hedra, user: ${user.getId()}, generation $generationId failed: $errorMsg")
+                        logger.error("generateVideo(), hedra, model: $modelSlug, user: ${user.getId()}, generation $generationId failed: $errorMsg")
 
                         val queueGenUpd = handleApiAiError(
                             errorMsg = errorMsg,
@@ -284,6 +284,11 @@ class KlingHedra(
                             idVideo = generationId
                         )
                         serverRepository.queueGen.upsert(queueGenUpd)
+
+                        if (fallbackApi != null && !isSafetyError(errorMsg)) {
+                            logger.info("generateVideo(), hedra, model: $modelSlug failed, falling back to kling, user: ${user.getId()}")
+                            return fallbackApi.generateVideo(chatMessage, photo1, photo2, user, queueGen.copy(status = QueueGenStatus.CREATED), kieAi, 0)
+                        }
                         return ResultApiAI.Error(errorMsg)
                     }
 
@@ -304,9 +309,14 @@ class KlingHedra(
             @Suppress("UNREACHABLE_CODE")
             ResultApiAI.Success("generateVideo(), kling-hedra, user: ${user.getId()}, video generated")
         } catch (e: Exception) {
-            logger.info("generateVideo(), kling-hedra, user: ${user.getId()}, retry: $retry, Error ${e.stackTraceToString()}")
+            logger.info("generateVideo(), hedra, model: $modelSlug, user: ${user.getId()}, retry: $retry, Error ${e.stackTraceToString()}")
             serverRepository.queueGen.upsert(queueGen.copy(status = QueueGenStatus.FAILED))
-            ResultApiAI.Error(e.message)
+            val error = ResultApiAI.Error(e.message)
+            if (fallbackApi != null) {
+                logger.info("generateVideo(), hedra, model: $modelSlug failed, falling back to kling, user: ${user.getId()}")
+                return fallbackApi.generateVideo(chatMessage, photo1, photo2, user, queueGen.copy(status = QueueGenStatus.CREATED), kieAi, 0)
+            }
+            error
         }
     }
 
